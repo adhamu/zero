@@ -20,7 +20,6 @@ module.exports = {
      *
      */
     'react/static-property-placement': ['error', 'static public field'],
-    /** Add tsx to the base config. */
     'import/extensions': [
       'error',
       'ignorePackages',
