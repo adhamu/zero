@@ -49,19 +49,51 @@ jobs:
           patch=$(echo "$pkg_version" | cut -d. -f3)
           branch=${GITHUB_REF##*/}
 
-          echo $pkg_name
-          echo $pkg_version
-          echo $major
-          echo $minor
-          echo $patch
-          echo $branch
-
           if [[ $branch != "main" ]]; then
             yarn version --new-version "$pkg_version-beta$GITHUB_RUN_NUMBER" --no-git-tag-version
             yarn publish --tag beta --access public
           else
+            pub_versions=$(yarn info "${pkg_name}" versions --json | jq -r '.data[] | select(test("^([0-9]|[1-9][0-9]+).([0-9]|[1-9][0-9]+).([0-9]|[1-9][0-9])+$"))')
+            pub_versions_size="${#pub_versions}"
             version=pkg_version
+
+            if [[ $pub_versions_size == "0" ]]; then
+              yarn publish --access pubic
+              echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM
+            else
+              if [[ $(echo "$pub_versions" | grep -cF "'${pkg_version}'") == 0 ]]; then
+                latest_version=$(echo "$pub_versions" | tail -1)
+                latest_major=$(echo "$latest_version" | cut -d. -f1)
+
+                if [[ $minor -eq 0 && $patch -eq 0 && $((latest_major + 1)) -eq $major ]]; then
+                  yarn publish
+                  echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM
+                else
+                  latest_version=$(echo "$pub_versions" | grep -Eo "$major\.[[:digit:]]+\.[[:digit:]]+" | tail -1)
+                  latest_minor=$(echo "$latest_version" | cut -d. -f2)
+
+                  if [[ $patch -eq 0 && $((latest_minor + 1)) -eq $minor ]]; then
+                    yarn publish
+                    echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM
+                  else
+                    latest_version=$(echo "$pub_versions" | grep -Eo "$major\.$minor\.[[:digit:]]+" | tail -1)
+                    latest_patch=$(echo "$latest_version" | cut -d. -f3)
+
+                    if [[ $((latest_patch + 1)) -eq $patch ]]; then
+                      yarn publish
+                      echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM
+                    else
+                      echo "The version bump to $major.$minor.$patch is incorrect."
+                      echo "Please note the following rules we enforce:"
+                      echo "- only (major + 1).0.0 can be published if any major.minor.patch versions exist"
+                      echo "- minor and patch must only be incremented by 1 over previously published versions"
+                      exit 1
+                    fi
+                  fi
+                fi
+              else
+                echo "Version ${pkg_version} of ${pkg_name} has already been published, stopping."
+                exit 1
+              fi
+            fi
           fi
-
-          echo $version
-
