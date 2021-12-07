@@ -52,8 +52,9 @@ jobs:
           echo $patch
           echo $branch
 
-          if [[ $branch == "main" ]]; then
-            version="${pkg_version}-beta"
+          if [[ $branch != "main" ]]; then
+            yarn version --new-version "$pkg_version-beta$GITHUB_RUN_NUMBER" --no-git-tag-version
+            yarn publish --tag beta
           else
             version=pkg_version
           fi
