@@ -52,7 +52,7 @@ jobs:
           echo $patch
           echo $branch
 
-          if [[ branch == "main" ]]; then
+          if [[ $branch == "main" ]]; then
             version="${pkg_version}-beta"
           else
             version=pkg_version
