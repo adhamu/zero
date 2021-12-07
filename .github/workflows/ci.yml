@@ -44,9 +44,9 @@ jobs:
           minor=$(echo "$pkg_version" | cut -d. -f2)
           patch=$(echo "$pkg_version" | cut -d. -f3)
 
-          echo pkg_name
-          echo pkg_version
-          echo major
-          echo minor
-          echo patch
+          echo $pkg_name
+          echo $pkg_version
+          echo $major
+          echo $minor
+          echo $patch
 
