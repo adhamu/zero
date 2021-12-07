@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Cache node_modules
         uses: actions/cache@v2
