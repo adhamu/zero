@@ -1,10 +1,10 @@
 {
-  "name": "@devmatic/standards",
+  "name": "@adhamu/zero",
   "version": "0.0.1",
   "description": "Shared linting and formatting configurations",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adhamu/standards.git"
+    "url": "git+https://github.com/adhamu/zero.git"
   },
   "license": "UNLICENSED",
   "author": "Amit Dhamu",
