@@ -58,30 +58,30 @@ jobs:
             version=pkg_version
 
             if [[ $pub_versions_size == "0" ]]; then
-              yarn publish --access pubic
-              echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM
+              yarn publish --access public
+              echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM"
             else
               if [[ $(echo "$pub_versions" | grep -cF "'${pkg_version}'") == 0 ]]; then
                 latest_version=$(echo "$pub_versions" | tail -1)
                 latest_major=$(echo "$latest_version" | cut -d. -f1)
 
                 if [[ $minor -eq 0 && $patch -eq 0 && $((latest_major + 1)) -eq $major ]]; then
-                  yarn publish
-                  echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM
+                  yarn publish --access public
+                  echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM"
                 else
                   latest_version=$(echo "$pub_versions" | grep -Eo "$major\.[[:digit:]]+\.[[:digit:]]+" | tail -1)
                   latest_minor=$(echo "$latest_version" | cut -d. -f2)
 
                   if [[ $patch -eq 0 && $((latest_minor + 1)) -eq $minor ]]; then
-                    yarn publish
-                    echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM
+                    yarn publish --access public
+                    echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM"
                   else
                     latest_version=$(echo "$pub_versions" | grep -Eo "$major\.$minor\.[[:digit:]]+" | tail -1)
                     latest_patch=$(echo "$latest_version" | cut -d. -f3)
 
                     if [[ $((latest_patch + 1)) -eq $patch ]]; then
-                      yarn publish
-                      echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM
+                      yarn publish --access public
+                      echo "Successfully published version ${pkg_version} of ${pkg_name} to NPM"
                     else
                       echo "The version bump to $major.$minor.$patch is incorrect."
                       echo "Please note the following rules we enforce:"
