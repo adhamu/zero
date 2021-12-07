@@ -43,10 +43,20 @@ jobs:
           major=$(echo "$pkg_version" | cut -d. -f1)
           minor=$(echo "$pkg_version" | cut -d. -f2)
           patch=$(echo "$pkg_version" | cut -d. -f3)
+          branch=${GITHUB_REF##*/}
 
           echo $pkg_name
           echo $pkg_version
           echo $major
           echo $minor
           echo $patch
+          echo $branch
+
+          if [[ branch == "main" ]]; then
+            version="${pkg_version}-beta"
+          else
+            version=pkg_version
+          fi
+
+          echo $version
 
