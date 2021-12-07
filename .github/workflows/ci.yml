@@ -17,9 +17,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@devmatic'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Cache node_modules
         uses: actions/cache@v2
@@ -39,7 +40,7 @@ jobs:
       - name: Coding Standards
         run: yarn lint
 
-      - name: Publish to GitHub Package Registry
+      - name: Publish to NPM Registry
         run: |
           pkg_name=$(cat package.json | jq -r '.name')
           pkg_version=$(cat package.json | jq -r '.version')
@@ -57,7 +58,7 @@ jobs:
 
           if [[ $branch != "main" ]]; then
             yarn version --new-version "$pkg_version-beta$GITHUB_RUN_NUMBER" --no-git-tag-version
-            yarn publish --tag beta
+            yarn publish --tag beta --access public
           else
             version=pkg_version
           fi
