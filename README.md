@@ -1,5 +1,3 @@
-# Zero
-
 <img src="logo.png" alt="drawing" width="290"/>
 
 Shared linting and formatting configurations.
