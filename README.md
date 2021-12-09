@@ -8,6 +8,7 @@ Shared linting and formatting configurations.
 - [Prettier](#prettier)
 - [Stylelint](#stylelint)
 - [TSConfig](#tsconfig)
+- [Jest](#jest)
 
 ## Installation
 
@@ -91,3 +92,11 @@ EOF
 ```
 
 - [See configurations](./tsconfig)
+
+### Jest
+
+```sh
+cat > jest.config.js << EOF
+module.exports = require('@adhamu/zero/jest')
+EOF
+```
