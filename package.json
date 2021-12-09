@@ -1,6 +1,6 @@
 {
   "name": "@adhamu/zero",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Shared linting and formatting configurations",
   "repository": "https://github.com/adhamu/zero",
   "license": "UNLICENSED",
@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepare": "npx is-ci || husky install"
+  },
+  "bin": {
+    "zero": "./bin/install.sh"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.16.3",

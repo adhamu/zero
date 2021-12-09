@@ -53,8 +53,7 @@ yarn add @adhamu/zero -D
 You can install all configuration at once by using the quickstart script below. This will create all the necessary files with the appropriate configuration.
 
 ```sh
-cd ~/my-project
-node_modules/@adhamu/zero/bin/install.sh
+npx zero
 ```
 
 ### Manual
