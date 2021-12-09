@@ -1,6 +1,13 @@
 # Zero
 
-Shared linting and formatting configurations.
+![Zero](./logo.png)
+
+<center>
+  <p>Shared linting and formatting configurations.</p>
+
+[![Build](https://github.com/adhamu/zero/workflows/CI/badge.svg)](https://github.com/adhamu/zero/actions)
+
+</center>
 
 ## Includes
 
