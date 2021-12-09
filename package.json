@@ -10,6 +10,9 @@
     "lint:fix": "eslint . --fix",
     "prepare": "npx is-ci || husky install"
   },
+  "bin": {
+    "zero": "./bin/install.sh"
+  },
   "dependencies": {
     "@babel/eslint-parser": "^7.16.3",
     "@emotion/eslint-plugin": "^11.7.0",
