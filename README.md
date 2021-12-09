@@ -4,11 +4,17 @@ Shared linting and formatting configurations.
 
 ## Includes
 
-- [ESLint](#eslint)
-- [Prettier](#prettier)
-- [Stylelint](#stylelint)
-- [TSConfig](#tsconfig)
-- [Jest](#jest)
+- [Installation](#installation)
+  - [Create a Token](#create-a-token)
+  - [Install the package](#install-the-package)
+- [Usage](#usage)
+  - [Quickstart](#quickstart)
+  - [Manual](#manual)
+    - [ESLint](#eslint)
+    - [Prettier](#prettier)
+    - [Stylelint](#stylelint)
+    - [TSConfig](#tsconfig)
+    - [Jest](#jest)
 
 ## Installation
 
@@ -36,20 +42,31 @@ always-auth=true
 EOF
 ```
 
-Install the package
-
 ```sh
 yarn add @adhamu/zero -D
 ```
 
 ## Usage
 
-### ESLint
+### Quickstart
+
+You can install all configuration at once by using the quickstart script below. This will create all the necessary files with the appropriate configuration.
+
+```sh
+cd ~/my-project
+node_modules/@adhamu/zero/bin/install.sh
+```
+
+### Manual
+
+Alternatively, you can selectively install the configurations you need.
+
+#### ESLint
 
 ```sh
 cat > .eslintrc.json << EOF
 {
-  "extends": ["./node_modules/@adhamu/zero/eslint/base"]
+  "extends": ["./node_modules/@adhamu/zero/eslint/typescript"]
   // More options can go here...
 }
 EOF
@@ -57,7 +74,7 @@ EOF
 
 - [See configurations](./eslint)
 
-### Prettier
+#### Prettier
 
 ```sh
 cat > .prettierrc.yaml << EOF
@@ -67,7 +84,7 @@ EOF
 
 - [See configurations](./prettier)
 
-### Stylelint
+#### Stylelint
 
 ```sh
 cat > .stylelintrc.json << EOF
@@ -80,12 +97,13 @@ EOF
 
 - [See configurations](./stylelint)
 
-### TSConfig
+#### TSConfig
 
 ```sh
 cat > tsconfig.json << EOF
 {
-  "extends": "./node_modules/@adhamu/zero/tsconfig/base.json"
+  "extends": "./node_modules/@adhamu/zero/tsconfig/base.json",
+  "include": ["src/**/*.ts"]
   // Any other TSConfig options
 }
 EOF
@@ -93,10 +111,12 @@ EOF
 
 - [See configurations](./tsconfig)
 
-### Jest
+#### Jest
 
 ```sh
 cat > jest.config.js << EOF
 module.exports = require('@adhamu/zero/jest')
 EOF
 ```
+
+- [See configuration](./jest)
