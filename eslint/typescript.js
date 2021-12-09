@@ -22,10 +22,6 @@ module.exports = {
         },
       },
       rules: {
-        /**
-         * Avoid export default.
-         * @see https://basarat.gitbook.io/typescript/main-1/defaultisbad
-         */
         'import/prefer-default-export': 'off',
         'import/no-default-export': 'error',
 
@@ -36,7 +32,6 @@ module.exports = {
         '@typescript-eslint/semi': ['error', 'never'],
         '@typescript-eslint/no-extra-semi': 'off',
 
-        /** Add ts to airbnb's list. */
         'import/extensions': [
           'error',
           'ignorePackages',

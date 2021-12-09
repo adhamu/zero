@@ -7,7 +7,6 @@ module.exports = {
   plugins: ['stylelint-scss'],
   rules: {
     'order/properties-alphabetical-order': null,
-    // add deeper nesting to align with Airbnb css/scss style guide
     'max-nesting-depth': [
       2,
       {

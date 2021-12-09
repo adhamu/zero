@@ -19,9 +19,6 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   rules: {
-    /**
-     * FORMATTING
-     */
     'no-alert': 'warn',
     'no-control-regex': 'off',
     'no-debugger': 'warn',
@@ -77,9 +74,6 @@ module.exports = {
     ],
     'require-await': 'error',
     yoda: ['error', 'never'],
-    /**
-     * SECURITY
-     */
     'no-wildcard-postmessage/no-wildcard-postmessage': 1,
     'node/no-deprecated-api': 1,
     'node/no-extraneous-import': 1,
@@ -97,9 +91,6 @@ module.exports = {
         ],
       },
     },
-    /**
-     * TESTING
-     */
     {
       files: [
         '**/__tests__/*.{test,spec}.[jt]s?(x)',

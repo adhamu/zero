@@ -13,7 +13,7 @@ Shared linting and formatting configurations.
 
 ### Create a Token
 
-You'll need a GitHub Personal Access Token with `read:packages` permission. You can create on at [https://github.com/settings/tokens](https://github.com/settings/tokens).
+You'll need a GitHub Personal Access Token with `read:packages` permission. You can create one at [https://github.com/settings/tokens](https://github.com/settings/tokens).
 
 Once you have it, copy it to your clipboard as you'll never see it again and add it to your `.zshrc` or `.bash_profile`
 
