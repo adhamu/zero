@@ -1,8 +1,10 @@
-<img src="logo.png" alt="drawing" width="290"/>
+<div align="center">
+  <img src="logo.png" alt="drawing" width="350"/>
 
-Shared linting and formatting configurations.
+  Shared linting and formatting configurations.
 
-[![Build](https://github.com/adhamu/zero/workflows/CI/badge.svg)](https://github.com/adhamu/zero/actions)
+  [![Build](https://github.com/adhamu/zero/workflows/CI/badge.svg)](https://github.com/adhamu/zero/actions)
+</div>
 
 ## Includes
 
