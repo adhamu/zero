@@ -12,6 +12,7 @@ Shared linting and formatting configurations.
 ## Includes
 
 - [Installation](#installation)
+- [Requirements](#requirements)
 - [Usage](#usage)
   - [Quickstart](#quickstart)
   - [Manual](#manual)
@@ -21,10 +22,13 @@ Shared linting and formatting configurations.
     - [TSConfig](#tsconfig)
     - [Jest](#jest)
 
+## Requirements
+
+- Node 14.17
+
 ## Installation
 
 ```sh
-nvm use
 yarn add @adhamu/zero -D
 ```
 
