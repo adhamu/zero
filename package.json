@@ -2,16 +2,26 @@
   "name": "@adhamu/zero",
   "version": "2.0.0",
   "description": "Shared linting and formatting configurations",
+  "keywords": [
+    "eslint",
+    "stylelint",
+    "prettier",
+    "tsconfig",
+    "typescript",
+    "jest",
+    "lint",
+    "format"
+  ],
   "repository": "https://github.com/adhamu/zero",
   "license": "UNLICENSED",
   "author": "Amit Dhamu",
+  "bin": {
+    "zero": "./bin/install.sh"
+  },
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepare": "npx is-ci || husky install"
-  },
-  "bin": {
-    "zero": "./bin/install.sh"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.16.3",
