@@ -3,16 +3,15 @@
 <div align="center">
   <img src="logo.png" alt="drawing" width="350"/>
 
-  Shared linting and formatting configurations.
+Shared linting and formatting configurations.
 
-  [![Build](https://github.com/adhamu/zero/workflows/CI/badge.svg)](https://github.com/adhamu/zero/actions)
+[![Build](https://github.com/adhamu/zero/workflows/CI/badge.svg)](https://github.com/adhamu/zero/actions)
+
 </div>
 
 ## Includes
 
 - [Installation](#installation)
-  - [Create a Token](#create-a-token)
-  - [Install the package](#install-the-package)
 - [Usage](#usage)
   - [Quickstart](#quickstart)
   - [Manual](#manual)
@@ -24,31 +23,8 @@
 
 ## Installation
 
-### Create a Token
-
-You'll need a GitHub Personal Access Token with `read:packages` permission. You can create one at [https://github.com/settings/tokens](https://github.com/settings/tokens).
-
-Once you have it, copy it to your clipboard as you'll never see it again and add it to your `.zshrc` or `.bash_profile`
-
 ```sh
-export GITHUB_REGISTRY_TOKEN=YOUR_TOKEN_HERE
-```
-
-Then `source ~/.zshrc` or `source ~/.bash_profile`.
-
-### Install the package
-
-Create an `.npmrc` in your project to install from the GitHub Package Registry
-
-```sh
-cat > .npmrc << EOF
-always-auth=true
-@adhamu:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=\${GITHUB_REGISTRY_TOKEN}
-EOF
-```
-
-```sh
+nvm use
 yarn add @adhamu/zero -D
 ```
 
