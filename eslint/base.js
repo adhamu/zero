@@ -46,9 +46,10 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: '@dunelm/**',
-            group: 'internal',
-            position: 'before',
+            pattern: '*.[s]css',
+            group: 'index',
+            patternOptions: { matchBase: true },
+            position: 'after',
           },
         ],
         pathGroupsExcludedImportTypes: ['react'],
@@ -130,6 +131,10 @@ module.exports = {
         'testing-library/prefer-presence-queries': 'error',
         'testing-library/prefer-user-event': 'error',
         'testing-library/prefer-wait-for': 'error',
+        'testing-library/no-render-in-setup': [
+          'error',
+          { allowTestingFrameworkSetupHook: 'beforeEach' },
+        ],
       },
     },
     {
