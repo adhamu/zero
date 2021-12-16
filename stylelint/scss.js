@@ -7,6 +7,10 @@ module.exports = {
   plugins: ['stylelint-scss'],
   rules: {
     'order/properties-alphabetical-order': null,
+    'selector-no-qualifying-type': [
+      true,
+      { ignore: ['attribute', 'class', 'id'] },
+    ],
     'max-nesting-depth': [
       2,
       {

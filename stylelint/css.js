@@ -10,6 +10,10 @@ module.exports = {
       'font-size': ['px'],
       'line-height': ['px'],
     },
+    'selector-no-qualifying-type': [
+      true,
+      { ignore: ['attribute', 'class', 'id'] },
+    ],
     'length-zero-no-unit': true,
     'order/order': [
       [
