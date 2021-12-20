@@ -73,15 +73,4 @@ module.exports = {
       },
     },
   ],
-  settings: {
-    jest: {
-      version: 'detect',
-    },
-    files: ['**/*.js', '**/*.ts'],
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.ts'],
-      },
-    },
-  },
 }
