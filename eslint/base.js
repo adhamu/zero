@@ -155,5 +155,11 @@ module.exports = {
     jest: {
       version: 'detect',
     },
+    files: ['**/*.js'],
+    'import/resolver': {
+      node: {
+        extensions: ['.js'],
+      },
+    },
   },
 }

@@ -24,5 +24,11 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    files: ['**/*.js', '**/*.jsx'],
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx'],
+      },
+    },
   },
 }
