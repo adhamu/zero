@@ -3,12 +3,6 @@ module.exports = {
     'stylelint-config-idiomatic-order',
     'stylelint-prettier/recommended',
   ],
-  overrides: [
-    {
-      files: ['**/*.{js,ts,jsx,tsx}'],
-      customSyntax: '@stylelint/postcss-css-in-js',
-    },
-  ],
   plugins: ['stylelint-prettier'],
   rules: {
     'prettier/prettier': true,
