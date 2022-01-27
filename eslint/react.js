@@ -19,6 +19,10 @@ module.exports = {
     'react/no-array-index-key': 'warn',
     'react/jsx-fragments': ['error', 'syntax'],
     'react/jsx-no-useless-fragment': 'error',
+    'react/jsx-curly-brace-presence': [
+      'error',
+      { props: 'never', children: 'never' },
+    ],
   },
   settings: {
     react: {
