@@ -1,6 +1,6 @@
 {
   "name": "@adhamu/zero",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Shared linting and formatting configurations",
   "keywords": [
     "eslint",
@@ -33,6 +33,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-webpack": "^0.13.2",
     "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jest": "^26.1.1",
+    "eslint-plugin-jest-dom": "^4.0.1",
     "eslint-plugin-jest-formatting": "^3.1.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-no-only-tests": "^2.6.0",
@@ -56,8 +58,6 @@
     "stylelint-prettier": "^2.0.0"
   },
   "devDependencies": {
-    "eslint-plugin-jest": "^26.0.0",
-    "eslint-plugin-jest-dom": "^4.0.1",
     "husky": "^7.0.0"
   },
   "peerDependencies": {
