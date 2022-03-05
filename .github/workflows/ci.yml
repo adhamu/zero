@@ -41,6 +41,8 @@ jobs:
 
       - name: Publish
         run: |
+          branch=${GITHUB_REF##*/}
+
           if [[ $branch != "main" ]]; then
             yarn publish --tag beta --access public
           else
