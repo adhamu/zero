@@ -7,4 +7,12 @@ module.exports = {
   bracketSpacing: true,
   arrowParens: 'avoid',
   singleQuote: true,
+  overrides: [
+    {
+      files: ['*.yaml', '*.yml'],
+      options: {
+        singleQuote: false,
+      },
+    },
+  ],
 }
