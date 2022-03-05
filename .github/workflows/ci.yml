@@ -39,7 +39,7 @@ jobs:
       - name: Coding Standards
         run: yarn lint
 
-      - name: Publish to Github Registry
+      - name: Publish
         run: |
           if [[ $branch != "main" ]]; then
             yarn publish --tag beta --access public
