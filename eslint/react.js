@@ -5,7 +5,7 @@ module.exports = {
     browser: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', './base'],
+  extends: ['plugin:react/recommended', 'plugin:react/jsx-runtime', './base'],
   plugins: ['react', '@emotion'],
   parserOptions: {
     sourceType: 'module',
