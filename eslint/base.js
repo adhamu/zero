@@ -15,6 +15,7 @@ module.exports = {
   extends: [
     'airbnb-base',
     'plugin:regexp/recommended',
+    'plugin:security/recommended',
     'plugin:no-unsanitized/DOM',
     'plugin:prettier/recommended',
   ],
