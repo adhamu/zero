@@ -2,7 +2,7 @@ const { resolve } = require('path')
 
 module.exports = {
   roots: ['./src'],
-  transform: { '^.+\\.ts(x)?$': 'ts-jest', '^.+\\.js?$': 'babel-jest' },
+  transform: { '^.+\\.ts(x)?$': 'ts-jest' },
   testRegex: '(/__tests__/.*.(test|spec))\\.(ts|tsx|js)?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   coverageDirectory: resolve(process.cwd(), '.coverage'),
@@ -14,7 +14,6 @@ module.exports = {
       statements: 80,
     },
   },
-  testURL: 'http://localhost/',
   rootDir: process.cwd(),
   testEnvironment: 'node',
 }

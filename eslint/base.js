@@ -15,6 +15,7 @@ module.exports = {
   extends: [
     'airbnb-base',
     'plugin:regexp/recommended',
+    'plugin:security/recommended',
     'plugin:no-unsanitized/DOM',
     'plugin:prettier/recommended',
   ],
@@ -139,8 +140,7 @@ module.exports = {
     },
     {
       files: ['**/tests/**/*.[jt]s'],
-      plugins: ['testcafe', 'no-only-tests'],
-      extends: ['plugin:testcafe/recommended'],
+      plugins: ['no-only-tests'],
       rules: {
         camelcase: 'off',
         'no-empty-function': 'off',

@@ -24,7 +24,7 @@ Shared linting and formatting configurations.
 
 ## Requirements
 
-- Node 14.17
+- Node 16.14
 
 ## Installation
 
