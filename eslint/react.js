@@ -6,7 +6,7 @@ module.exports = {
     jest: true,
   },
   extends: ['plugin:react/recommended', 'plugin:react/jsx-runtime', './base'],
-  plugins: ['react', '@emotion'],
+  plugins: ['react', '@emotion', 'jsx-a11y', 'react-hooks'],
   parserOptions: {
     sourceType: 'module',
     ecmaFeatures: {
