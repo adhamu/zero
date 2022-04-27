@@ -1,7 +1,7 @@
 # Zero
 
 <div align="center">
-  <img src="logo.png" alt="drawing" width="350"/>
+  <img src="https://raw.githubusercontent.com/adhamu/zero/main/logo.png" alt="drawing" width="350"/>
 
 Shared linting and formatting configurations.
 
