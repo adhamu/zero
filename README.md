@@ -34,9 +34,7 @@ yarn add @adhamu/zero -D
 
 ## Usage
 
-### Quickstart
-
-You can install all configuration at once by using the quickstart script below. This will create all the necessary files with the appropriate configuration.
+### Setup Wizard
 
 ```sh
 npx zero
@@ -52,7 +50,6 @@ Alternatively, you can selectively install the configurations you need.
 cat > .eslintrc.json << EOF
 {
   "extends": ["./node_modules/@adhamu/zero/eslint/typescript"]
-  // More options can go here...
 }
 EOF
 ```
@@ -67,6 +64,17 @@ cat > .prettierrc.yaml << EOF
 EOF
 ```
 
+If you would like to override any Prettier settings, you can instead use a Javascript file:
+
+```shell
+cat > .prettierrc.js << EOF
+module.exports = {
+  ...require('@adhamu/zero/prettier'),
+  semi: true,
+}
+EOF
+```
+
 - [See configurations](./prettier)
 
 #### Stylelint
@@ -75,7 +83,6 @@ EOF
 cat > .stylelintrc.json << EOF
 {
   "extends": ["./node_modules/@adhamu/zero/stylelint/css"]
-  // More options can go here...
 }
 EOF
 ```
@@ -88,8 +95,10 @@ EOF
 cat > tsconfig.json << EOF
 {
   "extends": "./node_modules/@adhamu/zero/tsconfig/base.json",
-  "include": ["src/**/*.ts"]
-  // Any other TSConfig options
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "outDir": "./dist"
+  }
 }
 EOF
 ```
@@ -100,8 +109,13 @@ EOF
 
 ```sh
 cat > jest.config.js << EOF
-module.exports = require('@adhamu/zero/jest')
+module.exports = {
+  ...require('@adhamu/zero/jest'),
+  transform: { '^.+\\.ts(x)?$': 'ts-jest' },
+}
 EOF
 ```
+
+Note: You will need to install your own transformer. Eg. `ts-jest`, `@swc/jest` etc.
 
 - [See configuration](./jest)
