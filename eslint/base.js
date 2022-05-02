@@ -122,7 +122,12 @@ module.exports = {
         'jest/no-try-expect': 'off',
         'no-console': 'off',
         'react/prop-types': 'off',
-        'testing-library/no-await-sync-events': 'error',
+        'testing-library/no-await-sync-events': [
+          'error',
+          {
+            eventModules: ['fire-event'],
+          },
+        ],
         'testing-library/no-manual-cleanup': 'error',
         'testing-library/no-unnecessary-act': 'error',
         'testing-library/no-wait-for-multiple-assertions': 'error',
