@@ -16,9 +16,6 @@ module.exports = {
           node: {
             extensions: ['.js', '.json', '.ts'],
           },
-          webpack: {
-            extensions: ['.js', '.json', '.ts'],
-          },
         },
       },
       rules: {
