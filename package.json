@@ -1,6 +1,6 @@
 {
   "name": "@adhamu/zero",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "Shared linting and formatting configurations",
   "keywords": [
     "eslint",

@@ -78,7 +78,7 @@ EOF
 ```sh
 cat > .stylelintrc.json << EOF
 {
-  "extends": ["./node_modules/@adhamu/zero/stylelint/css"]
+  "extends": ["./node_modules/@adhamu/zero/stylelint"]
 }
 EOF
 ```
