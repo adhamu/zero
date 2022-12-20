@@ -1,13 +1,7 @@
 module.exports = {
-  tabWidth: 2,
-  semi: false,
-  quoteProps: 'as-needed',
-  jsxSingleQuote: false,
-  trailingComma: 'es5',
-  bracketSpacing: true,
   arrowParens: 'avoid',
-  singleQuote: true,
-  singleAttributePerLine: false,
+  bracketSpacing: true,
+  jsxSingleQuote: false,
   overrides: [
     {
       files: ['*.yaml', '*.yml'],
@@ -16,4 +10,10 @@ module.exports = {
       },
     },
   ],
+  quoteProps: 'as-needed',
+  semi: false,
+  singleAttributePerLine: false,
+  singleQuote: true,
+  tabWidth: 2,
+  trailingComma: 'es5',
 }

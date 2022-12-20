@@ -49,7 +49,7 @@ Alternatively, you can selectively install the configurations you need.
 ```sh
 cat > .eslintrc.json << EOF
 {
-  "extends": ["./node_modules/@adhamu/zero/eslint/typescript"]
+  "extends": ["./node_modules/@adhamu/zero/eslint"]
 }
 EOF
 ```

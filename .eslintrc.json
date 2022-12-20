@@ -1,3 +1,20 @@
 {
-  "extends": ["./eslint/base"]
+  "extends": ["./eslint"],
+  "overrides": [
+    {
+      "files": ["./{eslint,prettier,stylelint}/index.js"],
+      "rules": {
+        "sort-keys": [
+          "error",
+          "asc",
+          {
+            "caseSensitive": true,
+            "natural": false,
+            "minKeys": 2,
+            "allowLineSeparatedGroups": true
+          }
+        ]
+      }
+    }
+  ]
 }

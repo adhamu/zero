@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /* eslint-disable security/detect-child-process */
 /* eslint-disable security/detect-non-literal-fs-filename */
 /* eslint-disable import/no-dynamic-require */
@@ -53,23 +54,6 @@ const writeFile = (file, content) => {
 
 const toJson = content => JSON.stringify(content, null, 2)
 
-const configMap = {
-  eslint: {
-    JavaScript: {
-      withoutReact: 'base',
-      withReact: 'react',
-    },
-    TypeScript: {
-      withoutReact: 'typescript',
-      withReact: 'typescript-react',
-    },
-  },
-  tsconfig: {
-    withoutReact: 'base',
-    withReact: 'react',
-  },
-}
-
 inquirer
   .prompt([
     {
@@ -99,7 +83,7 @@ inquirer
       type: 'checkbox',
       name: 'configs',
       message: 'What would you like to setup?',
-      choices: ['ESLint', 'Prettier', 'Stylelint'],
+      choices: ['ESLint', 'Prettier'],
     },
     {
       type: 'list',
@@ -117,7 +101,7 @@ inquirer
       type: 'list',
       name: 'type',
       message: 'Which type of project is it?',
-      choices: Object.keys(configMap.eslint),
+      choices: ['JavaScript', 'TypeScript'],
     },
     {
       type: 'list',
@@ -126,6 +110,16 @@ inquirer
       choices: [
         { name: 'Yes', value: 'withReact' },
         { name: 'No', value: 'withoutReact' },
+      ],
+    },
+    {
+      type: 'list',
+      name: 'lintHelperScripts',
+      message:
+        'Would you like to add helper scripts to your package.json for running ESLint?',
+      choices: [
+        { name: 'Yes', value: true },
+        { name: 'No', value: false },
       ],
     },
     {
@@ -144,16 +138,6 @@ inquirer
       message: 'Please enter the TypeScript build directory (outDir)',
       when: ({ requireTsconfig }) => !!requireTsconfig,
     },
-    {
-      type: 'list',
-      name: 'stylelintType',
-      message: 'Which flavour of styling are you using?',
-      choices: [
-        { name: 'CSS', value: 'css' },
-        { name: 'Sass/SCSS', value: 'scss' },
-      ],
-      when: ({ configs }) => configs.includes('Stylelint'),
-    },
   ])
   .then(answers => {
     const {
@@ -164,8 +148,7 @@ inquirer
       removeExtraDeps,
       requireTsconfig,
       runYarn,
-      stylelintType,
-      type,
+      lintHelperScripts,
     } = answers
 
     if (!configs.includes('Prettier') && !!prettierConfirm) {
@@ -207,23 +190,36 @@ inquirer
       }
     }
 
+    if (lintHelperScripts) {
+      console.log(colors.gray('Adding ESLint helper scripts to package.json'))
+
+      projectPackageJson.scripts = {
+        ...projectPackageJson.scripts,
+        lint: 'eslint .',
+        'lint:fix': 'yarn lint --fix',
+      }
+
+      writeFile(projectPackageJsonFile, toJson(projectPackageJson))
+    }
+
     if (configs.includes('ESLint')) {
       deleteFiles(['.eslintrc', '.eslintrc.json', '.eslintrc.js'])
 
       writeFile(
         '.eslintrc.json',
         toJson({
-          extends: [
-            `./node_modules/@adhamu/zero/eslint/${
-              configMap.eslint[`${type}`][`${isReact}`]
-            }`,
-          ],
+          extends: ['./node_modules/@adhamu/zero/eslint'],
         })
       )
     }
 
     if (configs.includes('Prettier')) {
-      deleteFiles(['.prettierrc', '.prettierrc.yml', '.prettierrc.yaml'])
+      deleteFiles([
+        '.prettierrc',
+        '.prettierrc.yml',
+        '.prettierrc.yaml',
+        '.prettierrc.js',
+      ])
 
       writeFile('.prettierrc.yaml', '"@adhamu/zero/prettier"')
     }
@@ -234,24 +230,11 @@ inquirer
       writeFile(
         'tsconfig.json',
         toJson({
-          extends: `./node_modules/@adhamu/zero/tsconfig/${
-            configMap.tsconfig[`${isReact}`]
-          }.json`,
+          extends: `@adhamu/zero/tsconfig/${isReact ? 'react' : 'base'}.json`,
           include: ['**/*.ts*'],
           compilerOptions: {
             outDir,
           },
-        })
-      )
-    }
-
-    if (configs.includes('Stylelint')) {
-      deleteFiles(['.stylelintrc', '.stylelintrc.js', '.stylelintrc.json'])
-
-      writeFile(
-        '.stylelintrc.json',
-        toJson({
-          extends: [`./node_modules/@adhamu/zero/stylelint/${stylelintType}`],
         })
       )
     }
