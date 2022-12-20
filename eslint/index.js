@@ -44,7 +44,6 @@ module.exports = {
           'builtin',
           'external',
           'internal',
-          'type',
           ['parent', 'sibling', 'index'],
         ],
         'newlines-between': 'always',
@@ -53,6 +52,11 @@ module.exports = {
           {
             group: 'external',
             pattern: '@*/**',
+            position: 'after',
+          },
+          {
+            group: 'index',
+            pattern: './*',
             position: 'after',
           },
           {
