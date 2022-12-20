@@ -1,6 +1,11 @@
 name: CI
 
-on: push
+on:
+  push:
+    branches:
+      - "*"
+    tags-ignore:
+      - "*"
 
 jobs:
   pipeline:
@@ -9,22 +14,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set Node version from .nvmrc
-        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
-        id: nvm
+      - name: Set Environment Variables
+        run: |
+          echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+          echo ::set-output name=CURRENT_VERSION::$(cat package.json | jq -r '.version')
+          echo ::set-output name=PUBLISHED_VERSION::$(npm view arge version)
+          echo ::set-output name=BRANCH::${GITHUB_REF##*/}
+        id: env_vars
 
-      - name: Install Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+      - name: Install Node.js ${{ steps.env_vars.outputs.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Cache node_modules
         uses: actions/cache@v2
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
@@ -39,10 +48,22 @@ jobs:
       - name: Coding Standards
         run: yarn lint
 
-      - name: Publish
+      - name: Create Release
+        if: github.ref == 'refs/heads/main'
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        with:
+          tag_name: ${{ steps.env_vars.outputs.CURRENT_VERSION }}
+          release_name: ${{ steps.env_vars.outputs.CURRENT_VERSION }}
+          body: "**Full Changelog**: https://github.com/adhamu/zero/compare/${{ steps.env_vars.outputs.PUBLISHED_VERSION }}...${{ steps.env_vars.outputs.CURRENT_VERSION }}"
+          draft: false
+          prerelease: false
+
+      - name: Publish to Registry
         run: |
-          pkg_version=$(cat package.json | jq -r '.version')
-          branch=${GITHUB_REF##*/}
+          pkg_version=${{ steps.env_vars.outputs.CURRENT_VERSION }}
+          branch=${{ steps.env_vars.outputs.BRANCH }}
 
           if [[ $branch != "main" ]]; then
             yarn version --new-version "$pkg_version-beta$GITHUB_RUN_NUMBER" --no-git-tag-version
