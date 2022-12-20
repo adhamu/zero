@@ -18,7 +18,7 @@ jobs:
         run: |
           echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
           echo ::set-output name=CURRENT_VERSION::$(cat package.json | jq -r '.version')
-          echo ::set-output name=PUBLISHED_VERSION::$(npm view arge version)
+          echo ::set-output name=PUBLISHED_VERSION::$(npm view @adhamu/zero version)
           echo ::set-output name=BRANCH::${GITHUB_REF##*/}
         id: env_vars
 
