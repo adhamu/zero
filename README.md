@@ -22,10 +22,6 @@ Shared linting and formatting configurations.
     - [TSConfig](#tsconfig)
     - [Jest](#jest)
 
-## Requirements
-
-- Node 16.14
-
 ## Installation
 
 ```sh
@@ -60,7 +56,7 @@ EOF
 
 ```sh
 cat > .prettierrc.yaml << EOF
-'@adhamu/zero/prettier'
+"@adhamu/zero/prettier"
 EOF
 ```
 
@@ -94,7 +90,7 @@ EOF
 ```sh
 cat > tsconfig.json << EOF
 {
-  "extends": "./node_modules/@adhamu/zero/tsconfig/base.json",
+  "extends": "@adhamu/zero/tsconfig/base.json",
   "include": ["src/**/*.ts"],
   "compilerOptions": {
     "outDir": "./dist"
