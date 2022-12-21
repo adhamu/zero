@@ -9,6 +9,8 @@ module.exports = {
       'font-size': ['px'],
       'line-height': ['px'],
     },
+    'function-parentheses-space-inside': null,
+    indentation: null,
     'length-zero-no-unit': true,
     'order/order': [
       [
