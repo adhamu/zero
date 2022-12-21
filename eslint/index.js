@@ -44,6 +44,7 @@ module.exports = {
           'builtin',
           'external',
           'internal',
+          'type',
           ['parent', 'sibling', 'index'],
         ],
         'newlines-between': 'always',
