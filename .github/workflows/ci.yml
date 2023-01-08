@@ -63,7 +63,7 @@ jobs:
 
       - name: Get release notes
         run: |
-          echo "${{ steps.env_vars.outputs.RELEASE_NOTES }}
+          echo -e "${{ steps.env_vars.outputs.RELEASE_NOTES }}
 
           **Full Changelog**: https://github.com/adhamu/zero/compare/5.1.0..${{ steps.env_vars.outputs.PUBLISHED_VERSION }}"
 
