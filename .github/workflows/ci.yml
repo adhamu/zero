@@ -67,6 +67,18 @@ jobs:
 
           **Full Changelog**: https://github.com/adhamu/zero/compare/5.1.0..${{ steps.env_vars.outputs.PUBLISHED_VERSION }}"
 
+      - name: Create Draft Release
+        if: github.ref != 'refs/heads/main'
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        with:
+          tag_name: ${{ steps.env_vars.outputs.CURRENT_VERSION }}
+          release_name: ${{ steps.env_vars.outputs.CURRENT_VERSION }}
+          body: "${{ steps.env_vars.outputs.RELEASE_NOTES }}\n\nFull Changelog**: https://github.com/adhamu/zero/compare/5.1.0..${{ steps.env_vars.outputs.PUBLISHED_VERSION }}"
+          draft: true
+          prerelease: true
+
       - name: Create Release
         if: github.ref == 'refs/heads/main'
         uses: actions/create-release@latest
