@@ -82,6 +82,6 @@ jobs:
         with:
           tag_name: ${{ steps.env_vars.outputs.CURRENT_VERSION }}
           release_name: ${{ steps.env_vars.outputs.CURRENT_VERSION }}
-          body: "${{ steps.env_vars.changeset.RELEASE_NOTES }}\n\n**Full Changelog**: https://github.com/adhamu/zero/compare/${{ steps.env_vars.outputs.PUBLISHED_VERSION }}...${{ steps.env_vars.outputs.CURRENT_VERSION }}"
+          body: "${{ steps.changeset.outputs.RELEASE_NOTES }}\n\n**Full Changelog**: https://github.com/adhamu/zero/compare/${{ steps.env_vars.outputs.PUBLISHED_VERSION }}...${{ steps.env_vars.outputs.CURRENT_VERSION }}"
           draft: false
           prerelease: false
