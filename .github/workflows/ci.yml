@@ -21,6 +21,10 @@ jobs:
           echo ::set-output name=PUBLISHED_VERSION::$(npm view @adhamu/zero version)
           echo ::set-output name=BRANCH::${GITHUB_REF##*/}
           echo ::set-output name=RELEASE_NOTES::$(git log 5.1.0..$(npm view @adhamu/zero version) --format="%C(auto)%h %s")
+
+          git --no-pager log --decorate=short --pretty=oneline -n1
+
+          git tag | cat
         id: env_vars
 
       - name: Install Node.js ${{ steps.env_vars.outputs.NODE_VERSION }}
