@@ -60,6 +60,8 @@ jobs:
             yarn publish --tag beta --access public
           else
             yarn publish --access public
+            git tag $pkg_version
+            git push --tags
           fi
 
       - name: Create Changeset
