@@ -20,6 +20,7 @@ jobs:
           echo ::set-output name=CURRENT_VERSION::$(cat package.json | jq -r '.version')
           echo ::set-output name=PUBLISHED_VERSION::$(npm view @adhamu/zero version)
           echo ::set-output name=BRANCH::${GITHUB_REF##*/}
+          echo ::set-output name=RELEASE_NOTES::$(git log 5.1.0..${{ steps.env_vars.outputs.PUBLISHED_VERSION }} --format="%C(auto)%h %s")
         id: env_vars
 
       - name: Install Node.js ${{ steps.env_vars.outputs.NODE_VERSION }}
@@ -47,6 +48,10 @@ jobs:
 
       - name: Coding Standards
         run: yarn lint
+
+      - name: Get release notes
+        run: |
+          echo "${{ steps.env_vars.outputs.RELEASE_NOTES }}\n\n**Full Changelog**: https://github.com/adhamu/zero/compare/5.1.0..${{ steps.env_vars.outputs.PUBLISHED_VERSION }}"
 
       - name: Create Release
         if: github.ref == 'refs/heads/main'
