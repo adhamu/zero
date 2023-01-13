@@ -67,7 +67,7 @@ jobs:
       - name: Create Changeset
         if: github.ref == 'refs/heads/main'
         run: |
-          changeset=$(git log ${{ steps.env_vars.outputs.PUBLISHED_VERSION }}..${{ steps.env_vars.outputs.NEW_VERSION }} --format="%C(auto)%h %s")
+          changeset=$(git log ${{ steps.env_vars.outputs.PUBLISHED_VERSION }}..HEAD --format="%C(auto)%h %s")
 
           changeset="${changeset//'%'/'%25'}"
           changeset="${changeset//$'\n'/'%0A'}"
