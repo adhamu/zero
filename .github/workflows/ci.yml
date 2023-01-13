@@ -65,15 +65,13 @@ jobs:
           fi
 
       - name: Create Changeset
-        if: github.ref == 'refs/heads/main'
         run: |
-          changeset=$(git log ${{ steps.env_vars.outputs.PUBLISHED_VERSION }}..HEAD --format="%C(auto)%h %s")
+          CHANGELOG=$(git --no-pager log ${{ steps.env_vars.outputs.PUBLISHED_VERSION }}..HEAD --format="%C(auto)%h %s")
+          DELIMITER="$(openssl rand -hex 8)"
 
-          changeset="${changeset//'%'/'%25'}"
-          changeset="${changeset//$'\n'/'%0A'}"
-          changeset="${changeset//$'\r'/'%0D'}"
-
-          echo "RELEASE_NOTES=${changeset}" >> $GITHUB_OUTPUT
+          echo "RELEASE_NOTES<<${DELIMITER}" >> $GITHUB_OUTPUT
+          echo -e "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "${DELIMITER}" >> $GITHUB_OUTPUT
         id: changeset
 
       - name: Create Release
