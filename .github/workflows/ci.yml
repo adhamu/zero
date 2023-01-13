@@ -50,6 +50,16 @@ jobs:
       - name: Coding Standards
         run: yarn lint
 
+      - name: Create Changeset
+        run: |
+          CHANGELOG=$(git --no-pager log ${{ steps.env_vars.outputs.PUBLISHED_VERSION }}..HEAD --format="%C(auto)%h %s")
+          DELIMITER="$(openssl rand -hex 8)"
+
+          echo "RELEASE_NOTES<<${DELIMITER}" >> $GITHUB_OUTPUT
+          echo -e "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "${DELIMITER}" >> $GITHUB_OUTPUT
+        id: changeset
+
       - name: Publish to Registry
         run: |
           pkg_version=${{ steps.env_vars.outputs.NEW_VERSION }}
@@ -60,19 +70,7 @@ jobs:
             yarn publish --tag beta --access public
           else
             yarn publish --access public
-            git tag $pkg_version
-            git push --tags
           fi
-
-      - name: Create Changeset
-        run: |
-          CHANGELOG=$(git --no-pager log ${{ steps.env_vars.outputs.PUBLISHED_VERSION }}..HEAD --format="%C(auto)%h %s")
-          DELIMITER="$(openssl rand -hex 8)"
-
-          echo "RELEASE_NOTES<<${DELIMITER}" >> $GITHUB_OUTPUT
-          echo -e "$CHANGELOG" >> $GITHUB_OUTPUT
-          echo "${DELIMITER}" >> $GITHUB_OUTPUT
-        id: changeset
 
       - name: Create Release
         if: github.ref == 'refs/heads/main'
