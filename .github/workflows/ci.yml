@@ -60,18 +60,6 @@ jobs:
           echo "${DELIMITER}" >> $GITHUB_OUTPUT
         id: changeset
 
-      - name: Publish to Registry
-        run: |
-          pkg_version=${{ steps.env_vars.outputs.NEW_VERSION }}
-          branch=${{ steps.env_vars.outputs.BRANCH }}
-
-          if [[ $branch != "main" ]]; then
-            yarn version --new-version "$pkg_version-beta$GITHUB_RUN_NUMBER" --no-git-tag-version
-            yarn publish --tag beta --access public
-          else
-            yarn publish --access public
-          fi
-
       - name: Create Release
         if: github.ref == 'refs/heads/main'
         uses: actions/create-release@latest
@@ -83,3 +71,15 @@ jobs:
           body: "${{ steps.changeset.outputs.RELEASE_NOTES }}\n\n**Full Changelog**: https://github.com/adhamu/zero/compare/${{ steps.env_vars.outputs.PUBLISHED_VERSION }}...${{ steps.env_vars.outputs.NEW_VERSION }}"
           draft: false
           prerelease: false
+
+      - name: Publish to Registry
+        run: |
+          pkg_version=${{ steps.env_vars.outputs.NEW_VERSION }}
+          branch=${{ steps.env_vars.outputs.BRANCH }}
+
+          if [[ $branch != "main" ]]; then
+            yarn version --new-version "$pkg_version-beta$GITHUB_RUN_NUMBER" --no-git-tag-version
+            yarn publish --tag beta --access public
+          else
+            yarn publish --access public
+          fi
