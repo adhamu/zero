@@ -38,9 +38,13 @@ module.exports = {
 
   overrides: [
     {
-      extends: ['stylelint-config-sass-guidelines'],
+      extends: [
+        'stylelint-config-idiomatic-order',
+        'stylelint-prettier/recommended',
+        'stylelint-config-sass-guidelines',
+      ],
       files: ['**/*.scss'],
-      plugins: ['stylelint-scss'],
+      plugins: ['stylelint-prettier', 'stylelint-scss'],
       rules: {
         'max-nesting-depth': [
           2,
