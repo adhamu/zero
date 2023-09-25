@@ -197,7 +197,7 @@ module.exports = {
           { eventModules: ['fire-event'] },
         ],
         'testing-library/no-manual-cleanup': 'error',
-        'testing-library/no-render-in-setup': [
+        'testing-library/no-render-in-lifecycle': [
           'error',
           { allowTestingFrameworkSetupHook: 'beforeEach' },
         ],
@@ -208,7 +208,6 @@ module.exports = {
         'testing-library/prefer-explicit-assert': 'error',
         'testing-library/prefer-presence-queries': 'error',
         'testing-library/prefer-user-event': 'error',
-        'testing-library/prefer-wait-for': 'error',
       },
     },
 
