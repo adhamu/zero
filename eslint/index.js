@@ -36,6 +36,7 @@ module.exports = {
       },
     ],
     'import/no-relative-packages': 'off',
+    'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
     'import/order': [
       'error',
       {
@@ -44,20 +45,16 @@ module.exports = {
           'builtin',
           'external',
           'internal',
-          'type',
           ['parent', 'sibling', 'index'],
+          'type',
         ],
         'newlines-between': 'always',
         pathGroups: [
           { group: 'external', pattern: 'react', position: 'before' },
           {
-            group: 'external',
-            pattern: '@*/**',
-            position: 'after',
-          },
-          {
             group: 'index',
-            pattern: './*',
+            pattern: '*.?(gif|png|jpg|jpeg|svg|tiff)',
+            patternOptions: { matchBase: true },
             position: 'after',
           },
           {
@@ -73,7 +70,7 @@ module.exports = {
             position: 'after',
           },
         ],
-        pathGroupsExcludedImportTypes: ['react'],
+        pathGroupsExcludedImportTypes: ['react', 'type'],
       },
     ],
     'no-alert': 'warn',
@@ -148,7 +145,11 @@ module.exports = {
           { extensions: ['.jsx', '.tsx'] },
         ],
         'react/jsx-fragments': ['error', 'syntax'],
-        'react/jsx-no-useless-fragment': 'error',
+        'react/jsx-no-leaked-render': [
+          'error',
+          { validStrategies: ['coerce', 'ternary'] },
+        ],
+        'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
         'react/jsx-props-no-spreading': 'off',
         'react/no-array-index-key': 'warn',
         'react/no-find-dom-node': 'warn',
@@ -215,7 +216,7 @@ module.exports = {
     {
       files: [
         '**/*.{config,preset}.[jt]s',
-        '**/{test-setup,setupTests,environment}.[jt]s',
+        '**/{test-setup,setupTests,environment}.[jt]s?(x)',
         '**/*.{spec,test}.[jt]s?(x)',
       ],
       rules: {
@@ -227,7 +228,7 @@ module.exports = {
           {
             devDependencies: [
               '**/*.{config,preset}.[jt]s',
-              '**/{test-setup,setupTests,environment}.[jt]s',
+              '**/{test-setup,setupTests,environment}.[jt]s?(x)',
               '**/*.{spec,test}.[jt]s?(x)',
             ],
           },
