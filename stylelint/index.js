@@ -1,10 +1,9 @@
 module.exports = {
   extends: [
-    'stylelint-config-standard',
+    'stylelint-config-standard-scss',
     'stylelint-config-idiomatic-order',
-    'stylelint-prettier/recommended',
   ],
-  plugins: ['stylelint-prettier'],
+  plugins: ['stylelint-scss'],
   rules: {
     'declaration-property-unit-disallowed-list': {
       'font-size': ['px'],
@@ -30,7 +29,6 @@ module.exports = {
         'rules',
       ],
     ],
-    'prettier/prettier': true,
     'selector-no-qualifying-type': [
       true,
       { ignore: ['attribute', 'class', 'id'] },
@@ -39,24 +37,25 @@ module.exports = {
 
   overrides: [
     {
-      extends: [
-        'stylelint-config-idiomatic-order',
-        'stylelint-prettier/recommended',
-        'stylelint-config-sass-guidelines',
-      ],
-      files: ['**/*.scss'],
-      plugins: ['stylelint-prettier', 'stylelint-scss'],
+      files: ['**/*.css'],
       rules: {
+        'at-rule-no-unknown': true,
+      },
+    },
+    {
+      files: ['**/*.scss'],
+      rules: {
+        'at-rule-no-unknown': [
+          true,
+          {
+            ignoreAtRules: ['use', 'forward', 'include', 'mixin'],
+          },
+        ],
         'max-nesting-depth': [
           2,
           {
             ignoreAtRules: ['each', 'media', 'supports', 'include'],
           },
-        ],
-        'order/properties-alphabetical-order': null,
-        'selector-no-qualifying-type': [
-          true,
-          { ignore: ['attribute', 'class', 'id'] },
         ],
       },
     },

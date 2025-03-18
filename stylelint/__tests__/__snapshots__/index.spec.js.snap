@@ -3,25 +3,34 @@
 exports[`Stylelint config returns the correct config 1`] = `
 {
   "extends": [
-    "stylelint-config-standard",
+    "stylelint-config-standard-scss",
     "stylelint-config-idiomatic-order",
-    "stylelint-prettier/recommended",
   ],
   "overrides": [
     {
-      "extends": [
-        "stylelint-config-idiomatic-order",
-        "stylelint-prettier/recommended",
-        "stylelint-config-sass-guidelines",
+      "files": [
+        "**/*.css",
       ],
+      "rules": {
+        "at-rule-no-unknown": true,
+      },
+    },
+    {
       "files": [
         "**/*.scss",
       ],
-      "plugins": [
-        "stylelint-prettier",
-        "stylelint-scss",
-      ],
       "rules": {
+        "at-rule-no-unknown": [
+          true,
+          {
+            "ignoreAtRules": [
+              "use",
+              "forward",
+              "include",
+              "mixin",
+            ],
+          },
+        ],
         "max-nesting-depth": [
           2,
           {
@@ -33,22 +42,11 @@ exports[`Stylelint config returns the correct config 1`] = `
             ],
           },
         ],
-        "order/properties-alphabetical-order": null,
-        "selector-no-qualifying-type": [
-          true,
-          {
-            "ignore": [
-              "attribute",
-              "class",
-              "id",
-            ],
-          },
-        ],
       },
     },
   ],
   "plugins": [
-    "stylelint-prettier",
+    "stylelint-scss",
   ],
   "rules": {
     "declaration-property-unit-disallowed-list": {
@@ -79,7 +77,6 @@ exports[`Stylelint config returns the correct config 1`] = `
         "rules",
       ],
     ],
-    "prettier/prettier": true,
     "selector-no-qualifying-type": [
       true,
       {
