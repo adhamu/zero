@@ -105,10 +105,10 @@ EOF
 #### Stylelint
 
 ```sh
-cat > .stylelintrc.json << EOF
-{
-  "extends": ["./node_modules/@adhamu/zero/stylelint"]
-}
+cat > stylelint.config.js << EOF
+const stylelintConfig = require('@adhamu/zero/stylelint')
+
+module.exports = stylelintConfig
 EOF
 ```
 

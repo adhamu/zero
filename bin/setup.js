@@ -100,13 +100,17 @@ async function main() {
 
   const configs = await multiselect({
     message: 'What would you like to setup?',
-    options: [{ value: 'ESLint' }, { value: 'Prettier' }],
+    options: [
+      { value: 'ESLint' },
+      { value: 'Prettier' },
+      { value: 'Stylelint' },
+    ],
   })
 
-  if (configs.includes('ESLint') && !configs.includes('Prettier')) {
+  if (!configs.includes('Prettier')) {
     prettierConfirm = await select({
       message:
-        "Prettier is recommended alongside ESLint. Are you sure you don't want to configure it?",
+        "Prettier is recommended. Are you sure you don't want to configure it?",
       options: [
         {
           value: true,
@@ -216,12 +220,29 @@ async function main() {
   }
 
   if (lintHelperScripts) {
-    console.log(colors.gray('Adding ESLint helper scripts to package.json'))
+    console.log(colors.gray('Adding helper scripts to package.json'))
+
+    let helperScripts = {}
+
+    if (configs.includes('ESLint')) {
+      helperScripts = {
+        ...helperScripts,
+        lint: 'eslint .',
+        'lint:fix': 'yarn lint --fix',
+      }
+    }
+
+    if (configs.includes('Stylelint')) {
+      helperScripts = {
+        ...helperScripts,
+        'lint:styles': "stylelint '**/*.{css,scss}'",
+        'lint:styles:fix': 'yarn lint:styles --fix',
+      }
+    }
 
     projectPackageJson.scripts = {
       ...projectPackageJson.scripts,
-      lint: 'eslint .',
-      'lint:fix': 'yarn lint --fix',
+      ...helperScripts,
     }
 
     await writeFile(projectPackageJsonFile, toJson(projectPackageJson))
@@ -254,6 +275,26 @@ module.exports = eslintConfig
       '.prettierrc.yaml',
       '.prettierrc.js',
     ])
+
+    if (configs.includes('Stylelint')) {
+      deleteFiles([
+        '.stylelintrc',
+        '.stylelintrc.json',
+        '.stylelintrc.js',
+        '.stylelintrc.cjs',
+        '.stylelintrc.mjs',
+        'stylelint.config.js',
+        '.stylelintignore',
+      ])
+
+      await writeFile(
+        'stylelint.config.js',
+        `const stylelintConfig = require('@adhamu/zero/stylelint')
+
+module.exports = stylelintConfig
+        `
+      )
+    }
 
     await writeFile('.prettierrc.yaml', '"@adhamu/zero/prettier"')
   }
