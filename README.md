@@ -43,12 +43,41 @@ Alternatively, you can selectively install the configurations you need.
 #### ESLint
 
 ```sh
-cat > .eslintrc.json << EOF
-{
-  "extends": ["./node_modules/@adhamu/zero/eslint"]
-}
+cat > eslint.config.js << EOF
+const eslintConfig = require('@adhamu/zero/eslint')
+
+module.exports = eslintConfig
 EOF
 ```
+
+If you would like to override any settings:
+
+```sh
+cat > eslint.config.js << EOF
+const eslintConfig = require('@adhamu/zero/eslint')
+
+module.exports = [
+  ...eslintConfig,
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn',
+    },
+  },
+]
+EOF
+```
+
+##### Ignoring files
+
+**Note** There is no longer an `.eslintignore`. To configure ignore patterns, you need to do something like:
+
+```javascript
+const eslintConfig = require('@adhamu/zero/eslint')
+
+module.exports = [{ ignores: ['**/dist/*'] }, ...eslintConfig]
+```
+
+**Note** By default, anything in your `.gitignore` is automatically ignored by ESLint
 
 - [See configurations](./eslint)
 
