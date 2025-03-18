@@ -766,7 +766,14 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@stylistic/stylelint-plugin@^3.0.1":
+"@stylistic/stylelint-config@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@stylistic/stylelint-config/-/stylelint-config-2.0.0.tgz#1c3cd23fa2e181ffcb3357103d920c6aa1f12798"
+  integrity sha512-8J4YAxggy2Nzkb8KJIOLbtMXTPZ5gpKVmyhiiuKEUgCl9XFND5lM0e/ZZBMGEYZ68h5qcsS/jgg1wh235erRAw==
+  dependencies:
+    "@stylistic/stylelint-plugin" "^3.0.0"
+
+"@stylistic/stylelint-plugin@^3.0.0", "@stylistic/stylelint-plugin@^3.0.1":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@stylistic/stylelint-plugin/-/stylelint-plugin-3.1.2.tgz#15c28db7bb3eb2db187f40acccb1ff667a887ec2"
   integrity sha512-tylFJGMQo62alGazK74MNxFjMagYOHmBZiePZFOJK2n13JZta0uVkB3Bh5qodUmOLtRH+uxH297EibK14UKm8g==

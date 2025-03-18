@@ -1,16 +1,16 @@
 module.exports = {
   extends: [
+    '@stylistic/stylelint-config',
     'stylelint-config-standard-scss',
     'stylelint-config-idiomatic-order',
   ],
   plugins: ['stylelint-scss'],
   rules: {
+    '@stylistic/function-parentheses-space-inside': null,
     'declaration-property-unit-disallowed-list': {
       'font-size': ['px'],
       'line-height': ['px'],
     },
-    'function-parentheses-space-inside': null,
-    indentation: null,
     'length-zero-no-unit': true,
     'order/order': [
       [

@@ -3,6 +3,7 @@
 exports[`Stylelint config returns the correct config 1`] = `
 {
   "extends": [
+    "@stylistic/stylelint-config",
     "stylelint-config-standard-scss",
     "stylelint-config-idiomatic-order",
   ],
@@ -49,6 +50,7 @@ exports[`Stylelint config returns the correct config 1`] = `
     "stylelint-scss",
   ],
   "rules": {
+    "@stylistic/function-parentheses-space-inside": null,
     "declaration-property-unit-disallowed-list": {
       "font-size": [
         "px",
@@ -57,8 +59,6 @@ exports[`Stylelint config returns the correct config 1`] = `
         "px",
       ],
     },
-    "function-parentheses-space-inside": null,
-    "indentation": null,
     "length-zero-no-unit": true,
     "order/order": [
       [
