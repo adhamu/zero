@@ -7,6 +7,12 @@ module.exports = {
   plugins: ['stylelint-scss'],
   rules: {
     '@stylistic/function-parentheses-space-inside': null,
+    '@stylistic/string-quotes': [
+      'single',
+      {
+        avoidEscape: true,
+      },
+    ],
     'declaration-property-unit-disallowed-list': {
       'font-size': ['px'],
       'line-height': ['px'],
