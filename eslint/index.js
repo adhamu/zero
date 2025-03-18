@@ -178,6 +178,7 @@ module.exports = [
       'n/no-missing-require': 'off',
       'n/no-process-exit': 'off',
       'n/no-unpublished-import': 'off',
+      'n/no-unpublished-require': 'off',
       'n/no-unsupported-features/es-syntax': 'off',
       'n/no-unsupported-features/node-builtins': 'off',
       'no-alert': 'warn',

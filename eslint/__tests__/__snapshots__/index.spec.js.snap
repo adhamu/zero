@@ -44895,7 +44895,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
       "n/no-process-exit": "off",
       "n/no-unpublished-bin": "error",
       "n/no-unpublished-import": "off",
-      "n/no-unpublished-require": "error",
+      "n/no-unpublished-require": "off",
       "n/no-unsupported-features/es-builtins": "error",
       "n/no-unsupported-features/es-syntax": "off",
       "n/no-unsupported-features/node-builtins": "off",
