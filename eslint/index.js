@@ -14,6 +14,7 @@ const pluginReact = require('eslint-plugin-react')
 const pluginRegexp = require('eslint-plugin-regexp')
 const pluginSecurity = require('eslint-plugin-security')
 const pluginTestingLibrary = require('eslint-plugin-testing-library')
+const pluginUnusedImports = require('eslint-plugin-unused-imports')
 const pluginWoke = require('eslint-plugin-woke')
 const globals = require('globals')
 const pluginTypescriptEslint = require('typescript-eslint')
@@ -57,6 +58,7 @@ module.exports = [
       regexp: pluginRegexp,
       security: pluginSecurity,
       'testing-library': pluginTestingLibrary,
+      'unused-imports': pluginUnusedImports,
       woke: pluginWoke,
     },
 
@@ -214,6 +216,7 @@ module.exports = [
       'semi-style': 'off',
       'space-before-function-paren': 'off',
       strict: 'warn',
+      'unused-imports/no-unused-imports': 'warn',
       'woke/profanity': 'error',
       yoda: ['error', 'never'],
     },

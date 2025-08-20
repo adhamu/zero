@@ -44767,6 +44767,199 @@ If your function does not access \`this\`, you can annotate it with \`this: void
           },
         },
       },
+      "unused-imports": {
+        "meta": {
+          "name": "unused-imports",
+        },
+        "rules": {
+          "no-unused-imports": {
+            "create": [Function],
+            "defaultOptions": [
+              {},
+            ],
+            "meta": {
+              "docs": {
+                "description": "Disallow unused variables",
+                "extendsBaseRule": true,
+                "recommended": "recommended",
+                "url": "https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-imports.md",
+              },
+              "fixable": "code",
+              "messages": {
+                "unusedVar": "'{{varName}}' is {{action}} but never used{{additional}}.",
+                "usedIgnoredVar": "'{{varName}}' is marked as ignored but is used{{additional}}.",
+                "usedOnlyAsType": "'{{varName}}' is {{action}} but only used as a type{{additional}}.",
+              },
+              "schema": [
+                {
+                  "oneOf": [
+                    {
+                      "enum": [
+                        "all",
+                        "local",
+                      ],
+                      "type": "string",
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "args": {
+                          "description": "Whether to check all, some, or no arguments.",
+                          "enum": [
+                            "all",
+                            "after-used",
+                            "none",
+                          ],
+                          "type": "string",
+                        },
+                        "argsIgnorePattern": {
+                          "description": "Regular expressions of argument names to not check for usage.",
+                          "type": "string",
+                        },
+                        "caughtErrors": {
+                          "description": "Whether to check catch block arguments.",
+                          "enum": [
+                            "all",
+                            "none",
+                          ],
+                          "type": "string",
+                        },
+                        "caughtErrorsIgnorePattern": {
+                          "description": "Regular expressions of catch block argument names to not check for usage.",
+                          "type": "string",
+                        },
+                        "destructuredArrayIgnorePattern": {
+                          "description": "Regular expressions of destructured array variable names to not check for usage.",
+                          "type": "string",
+                        },
+                        "ignoreClassWithStaticInitBlock": {
+                          "description": "Whether to ignore classes with at least one static initialization block.",
+                          "type": "boolean",
+                        },
+                        "ignoreRestSiblings": {
+                          "description": "Whether to ignore sibling properties in \`...\` destructurings.",
+                          "type": "boolean",
+                        },
+                        "reportUsedIgnorePattern": {
+                          "description": "Whether to report variables that match any of the valid ignore pattern options if they have been used.",
+                          "type": "boolean",
+                        },
+                        "vars": {
+                          "description": "Whether to check all variables or only locally-declared variables.",
+                          "enum": [
+                            "all",
+                            "local",
+                          ],
+                          "type": "string",
+                        },
+                        "varsIgnorePattern": {
+                          "description": "Regular expressions of variable names to not check for usage.",
+                          "type": "string",
+                        },
+                      },
+                      "type": "object",
+                    },
+                  ],
+                },
+              ],
+              "type": "problem",
+            },
+          },
+          "no-unused-vars": {
+            "create": [Function],
+            "defaultOptions": [
+              {},
+            ],
+            "meta": {
+              "docs": {
+                "description": "Disallow unused variables",
+                "extendsBaseRule": true,
+                "recommended": "recommended",
+                "url": "https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-vars.md",
+              },
+              "fixable": "code",
+              "messages": {
+                "unusedVar": "'{{varName}}' is {{action}} but never used{{additional}}.",
+                "usedIgnoredVar": "'{{varName}}' is marked as ignored but is used{{additional}}.",
+                "usedOnlyAsType": "'{{varName}}' is {{action}} but only used as a type{{additional}}.",
+              },
+              "schema": [
+                {
+                  "oneOf": [
+                    {
+                      "enum": [
+                        "all",
+                        "local",
+                      ],
+                      "type": "string",
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "args": {
+                          "description": "Whether to check all, some, or no arguments.",
+                          "enum": [
+                            "all",
+                            "after-used",
+                            "none",
+                          ],
+                          "type": "string",
+                        },
+                        "argsIgnorePattern": {
+                          "description": "Regular expressions of argument names to not check for usage.",
+                          "type": "string",
+                        },
+                        "caughtErrors": {
+                          "description": "Whether to check catch block arguments.",
+                          "enum": [
+                            "all",
+                            "none",
+                          ],
+                          "type": "string",
+                        },
+                        "caughtErrorsIgnorePattern": {
+                          "description": "Regular expressions of catch block argument names to not check for usage.",
+                          "type": "string",
+                        },
+                        "destructuredArrayIgnorePattern": {
+                          "description": "Regular expressions of destructured array variable names to not check for usage.",
+                          "type": "string",
+                        },
+                        "ignoreClassWithStaticInitBlock": {
+                          "description": "Whether to ignore classes with at least one static initialization block.",
+                          "type": "boolean",
+                        },
+                        "ignoreRestSiblings": {
+                          "description": "Whether to ignore sibling properties in \`...\` destructurings.",
+                          "type": "boolean",
+                        },
+                        "reportUsedIgnorePattern": {
+                          "description": "Whether to report variables that match any of the valid ignore pattern options if they have been used.",
+                          "type": "boolean",
+                        },
+                        "vars": {
+                          "description": "Whether to check all variables or only locally-declared variables.",
+                          "enum": [
+                            "all",
+                            "local",
+                          ],
+                          "type": "string",
+                        },
+                        "varsIgnorePattern": {
+                          "description": "Regular expressions of variable names to not check for usage.",
+                          "type": "string",
+                        },
+                      },
+                      "type": "object",
+                    },
+                  ],
+                },
+              ],
+              "type": "problem",
+            },
+          },
+        },
+      },
       "woke": {
         "rules": {
           "all": {
@@ -45051,6 +45244,7 @@ If your function does not access \`this\`, you can annotate it with \`this: void
       "semi-style": "off",
       "space-before-function-paren": "off",
       "strict": "warn",
+      "unused-imports/no-unused-imports": "warn",
       "use-isnan": "error",
       "valid-typeof": "error",
       "woke/profanity": "error",
